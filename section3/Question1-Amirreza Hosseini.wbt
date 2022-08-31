@@ -1,0 +1,162 @@
+#VRML_SIM R2022a utf8
+WorldInfo {
+}
+Viewpoint {
+  orientation 0.23315899110782107 -0.18793848312513026 -0.9541048220327828 4.295428273548566
+  position 1.154494929687496 -1.5050414361313225 2.134217966440087
+}
+TexturedBackground {
+  texture "dusk"
+}
+TexturedBackgroundLight {
+}
+RectangleArena {
+  translation 0.147818 0.213406 5.01821e-14
+  rotation 0 1 0 0
+  floorSize 2 2
+  floorAppearance RustyMetal {
+  }
+}
+DirectionalLight {
+  direction 0 -1 0
+}
+Solid {
+  translation -0.665642 -0.564621 -1
+  rotation 1 0 0 0
+  children [
+    Shape {
+      appearance RoughOak {
+      }
+      geometry DEF BaseCylinder Cylinder {
+        height 0.02
+        radius 0.1
+      }
+    }
+  ]
+  boundingObject USE BaseCylinder
+}
+Robot {
+  translation 0.286918 0.491259 0.018868750346354483
+  rotation 0.0007354280258562063 0.000681484765311064 0.9999994973619403 4.368033151802568e-14
+  scale 2.5 2.5 2.5
+  children [
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        position 1.57
+        axis 0 0 1
+      }
+      device [
+        RotationalMotor {
+          name "base"
+        }
+      ]
+      endPoint Solid {
+        translation 0 0 0.14
+        rotation 0 0 1 1.57
+        children [
+          Transform {
+            translation 0 0 0.15
+            rotation 1 0 0 1.5708003061004252
+            children [
+              SliderJoint {
+                jointParameters JointParameters {
+                  position 6.1
+                }
+                device [
+                  Brake {
+                    name "slider_joint"
+                  }
+                ]
+                endPoint Solid {
+                  translation 0 0 0.09999999999999964
+                  children [
+                    HingeJoint {
+                      jointParameters HingeJointParameters {
+                        position 1.57
+                        axis 0 0 1
+                      }
+                      device [
+                        RotationalMotor {
+                          name "head"
+                        }
+                      ]
+                      endPoint Solid {
+                        translation -0.015999994926909355 1.2741227371733998e-05 0.2
+                        rotation 0 0 1 1.57
+                        children [
+                          Transform {
+                            translation 0.01 -0.032 0
+                            children [
+                              Shape {
+                                appearance Asphalt {
+                                }
+                                geometry Box {
+                                  size 0.005 0.005 0.05
+                                }
+                              }
+                            ]
+                          }
+                          Shape {
+                            appearance MetalStainlessSteelCable {
+                            }
+                            geometry Box {
+                              size 0.005 0.005 0.05
+                            }
+                          }
+                        ]
+                        boundingObject DEF MyHeadCraw Box {
+                          size 0.005 0.005 0.05
+                        }
+                      }
+                    }
+                    Shape {
+                      appearance RoughPine {
+                      }
+                      geometry Cylinder {
+                        height 0.4
+                        radius 0.02
+                      }
+                    }
+                  ]
+                  name "slider"
+                }
+              }
+              Shape {
+                appearance BakelitePlastic {
+                }
+                geometry Cylinder {
+                  height 0.2
+                  radius 0.05
+                }
+              }
+            ]
+          }
+          Shape {
+            appearance BakelitePlastic {
+            }
+            geometry Cylinder {
+              height 0.3
+              radius 0.03
+            }
+          }
+        ]
+        name "joint01"
+      }
+    }
+    Shape {
+      appearance CorrugatedMetal {
+      }
+      geometry USE BaseCylinder
+    }
+  ]
+  description "my first robot"
+  boundingObject USE BaseCylinder
+  physics Physics {
+    mass 1
+    damping Damping {
+    }
+  }
+  controller "my_controller6"
+  linearVelocity -2.3134702854996436e-17 2.996931572558125e-19 -2.7932280989833054e-09
+  angularVelocity 3.266196205570474e-19 7.040758021600424e-17 -1.3304478756885594e-18
+}
